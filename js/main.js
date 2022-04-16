@@ -35,3 +35,21 @@ const renderTodos = function() {
 }
 
 renderTodos();
+
+elTodosWrapper.addEventListener("click", function(evt) {
+  if (evt.target.matches("button.btn-danger")) {
+    const clickedItemId = +evt.target.dataset.id;
+
+    const clickedItemIndex = todos.findIndex(function(todo) {
+      return todo.id === clickedItemId;
+    });
+    const clickedShowingItemIndex = showingTodos.findIndex(function(todo) {
+      return todo.id === clickedItemId;
+    });
+
+    showingTodos.splice(clickedShowingItemIndex, 1);
+    todos.splice(clickedItemIndex, 1);
+
+    renderTodos();
+  }
+})
