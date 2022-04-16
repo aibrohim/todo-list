@@ -36,6 +36,30 @@ const renderTodos = function() {
 
 renderTodos();
 
+const elAddTodoForm = document.querySelector("#add-todo");
+
+elAddTodoForm.addEventListener("submit", function(evt) {
+  evt.preventDefault();
+
+  const todoNameValue = evt.target.elements["todo-name"].value;
+
+  if (todoNameValue.trim()) { 
+    showingTodos.push({
+      id: Math.floor(Math.random() * 1000),
+      title: todoNameValue,
+      isDone: false
+    });
+    todos.push({
+      id: Math.floor(Math.random() * 1000),
+      title: todoNameValue,
+      isDone: false
+    });
+
+    renderTodos();
+    evt.target.reset();
+  }
+})
+
 elTodosWrapper.addEventListener("click", function(evt) {
   if (evt.target.matches("button.btn-danger")) {
     const clickedItemId = +evt.target.dataset.id;
