@@ -11,6 +11,7 @@ const renderTodo = function(todo) {
 
   const elTodoTitle = elTodo.querySelector(".todo-title");
   elTodoTitle.textContent = title;
+  elTodoTitle.className = `todo-title card-text mb-0 ms-2 me-auto ${isDone ? "text-decoration-line-through" : ""}`;
 
   const elTodoDelete = elTodo.querySelector(".delete-todo")
   elTodoDelete.setAttribute("data-id", id);
@@ -76,4 +77,34 @@ elTodosWrapper.addEventListener("click", function(evt) {
 
     renderTodos();
   }
+})
+
+elTodosWrapper.addEventListener("change", function(evt) {
+  if (evt.target.matches(".todo-checkbox")) {
+    const changedItemId = +evt.target.dataset.id;
+
+    const changedItemIndex = todos.findIndex(function(todo) {
+      return todo.id === changedItemId
+    });
+    const changedShowingItemIndex = showingTodos.findIndex(function(todo) {
+      return todo.id === changedItemId
+    });
+
+    const changedItem = showingTodos.find(function(todo) {
+      return todo.id === changedItemId;
+    })
+
+    showingTodos.splice(changedShowingItemIndex, 1, {
+      id: changedItemId,
+      title: changedItem.title,
+      isDone: !changedItem.isDone
+    });
+    todos.splice(changedItemIndex, 1, {
+      id: changedItemId,
+      title: changedItem.title,
+      isDone: !changedItem.isDone
+    });
+
+    renderTodos();
+  } 
 })
