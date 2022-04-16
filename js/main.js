@@ -19,7 +19,7 @@ const renderTodo = function(todo) {
   return elTodo;
 }
 
-const showingTodos = todos.slice();
+let showingTodos = todos.slice();
 
 const elTodosWrapper = document.querySelector(".todos-wrapper");
 
@@ -107,4 +107,20 @@ elTodosWrapper.addEventListener("change", function(evt) {
 
     renderTodos();
   } 
+})
+
+const elFilterForm = document.querySelector(".filter");
+
+elFilterForm.addEventListener("submit", function(evt) {
+  evt.preventDefault();
+
+  const searchValue = evt.target.elements.search.value;
+
+  const searchRegExp = new RegExp(searchValue, "gi");
+
+  showingTodos = todos.filter(function(todo) {
+    return todo.title.match(searchRegExp);
+  });
+
+  renderTodos();
 })
