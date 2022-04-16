@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-3 mb-2">
+    <h1 class="text-center">Todo List</h1>
+    <div class="row">
+      <div class="col-3">
+        <h2 class="h3">Filter</h2>
+        <form class="filter">
+          <div class="mb-3">
+            <label for="search" class="form-label">Title</label>
+            <input type="search" class="form-control" id="search" placeholder="Title">
+          </div>
+
+          <button type="submit" class="btn btn-primary d-block w-100 p-2">Search</button>
+        </form>
+      </div>
+      <div class="col">
+        <form class="mb-3" id="add-todo" action="#">
+          <div class="d-flex">
+            <input class="form-control me-3" placeholder="Todo name" type="text">
+            <button class="btn btn-primary flex-shrink-0">Add todo</button>
+          </div>
+        </form>
+
+        <h2 class="h3">Todos</h2>
+
+        <ul class="todos-wrapper list-unstyled">
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <template id="todo-template">
+    <li class="card d-flex flex-row align-items-center p-3 mb-3">
+      <input class="todo-checkbox flex-shrink-0" type="checkbox">
+      <p class="todo-title card-text mb-0 ms-2 me-auto">Todo name</p>
+      <button class="delete-todo btn btn-danger btn-sm">Delete</button>
+    </li>
+  </template>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
